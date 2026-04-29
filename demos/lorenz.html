@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atractor de Lorenz — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>🦋 Atractor de Lorenz</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="760" height="560"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Qué está pasando?</h3>
+      <p class="description">
+        Tres ecuaciones simples generan esta figura 3D que parece una mariposa. Lanzamos
+        dos partículas casi idénticas (su posición inicial difiere en una millonésima):
+        durante un rato siguen caminos parecidos y de pronto <strong>divergen totalmente</strong>.
+        Eso es el efecto mariposa: pequeños cambios → futuros completamente distintos.
+      </p>
+    </div>
+
+    <div class="control-group">
+      <label>σ (sigma) <span id="sg-val">10.0</span></label>
+      <input type="range" id="sg" min="1" max="20" step="0.1" value="10">
+    </div>
+    <div class="control-group">
+      <label>ρ (rho) <span id="rh-val">28.0</span></label>
+      <input type="range" id="rh" min="0" max="60" step="0.1" value="28">
+    </div>
+    <div class="control-group">
+      <label>β (beta) <span id="bt-val">2.67</span></label>
+      <input type="range" id="bt" min="0.5" max="6" step="0.01" value="2.67">
+    </div>
+    <div class="control-group">
+      <label>Velocidad de simulación <span id="sp-val">1.0</span></label>
+      <input type="range" id="sp" min="0.1" max="3" step="0.1" value="1">
+    </div>
+    <div class="control-group">
+      <label>Rotación automática <span id="rot-val">0.30</span></label>
+      <input type="range" id="rot" min="0" max="2" step="0.05" value="0.3">
+    </div>
+
+    <button class="secondary" id="reset">Reiniciar trayectorias</button>
+    <button class="secondary" id="preset">Valores clásicos (10, 28, 8/3)</button>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📜 Edward Lorenz, 1963</h3>
+    <p>
+      Lorenz era meteorólogo en el MIT. Modelando la convección del aire con tres ecuaciones,
+      un día reanudó una simulación introduciendo a mano los valores anteriores con menos
+      decimales (0.506 en lugar de 0.506127). El pronóstico resultante fue <strong>completamente
+      distinto</strong>. Acababa de descubrir el caos determinista.
+    </p>
+    <p>
+      De ahí salió la frase: "el aleteo de una mariposa en Brasil puede provocar un tornado
+      en Texas". Y curiosamente, el atractor que dibujan estas ecuaciones también tiene
+      forma de mariposa.
+    </p>
+  </div>
+
+  <div class="theory-card">
+    <h3>📐 Las tres ecuaciones</h3>
+    <p>Es un sistema de ecuaciones diferenciales ordinarias:</p>
+    <div class="formula">d<span class="var">x</span>/d<span class="var">t</span> <span class="op">=</span> <span class="var">σ</span>·(<span class="var">y</span> <span class="op">−</span> <span class="var">x</span>)</div>
+    <div class="formula">d<span class="var">y</span>/d<span class="var">t</span> <span class="op">=</span> <span class="var">x</span>·(<span class="var">ρ</span> <span class="op">−</span> <span class="var">z</span>) <span class="op">−</span> <span class="var">y</span></div>
+    <div class="formula">d<span class="var">z</span>/d<span class="var">t</span> <span class="op">=</span> <span class="var">x</span>·<span class="var">y</span> <span class="op">−</span> <span class="var">β</span>·<span class="var">z</span></div>
+    <p>
+      Sin senos, sin raíces, sin nada raro: sólo sumas y multiplicaciones. Y aún así, la
+      solución es impredecible a largo plazo.
+    </p>
+  </div>
+
+  <div class="theory-card">
+    <h3>🌀 Determinismo ≠ predecibilidad</h3>
+    <p>
+      Las ecuaciones son <strong>deterministas</strong>: si conoces el estado exacto, el
+      futuro está fijado. Pero <em>nunca</em> conoces el estado con precisión infinita,
+      y el sistema amplifica el error exponencialmente.
+    </p>
+    <p>
+      La trayectoria nunca se repite ni se cierra, pero tampoco escapa: queda atrapada
+      para siempre en esa forma de mariposa. A eso se le llama un <strong>atractor extraño</strong>.
+    </p>
+  </div>
+
+  <div class="theory-card">
+    <h3>💡 Dónde aparece el caos</h3>
+    <ul style="color:var(--text-dim); font-size:0.9rem; margin-left:1.2rem; line-height:1.7;">
+      <li><strong>Meteorología</strong>: por qué los pronósticos a más de 10 días son inviables.</li>
+      <li><strong>Mercados financieros</strong>: pequeñas noticias mueven enormes capitales.</li>
+      <li><strong>Latido cardíaco</strong> y actividad neuronal en ciertas patologías.</li>
+      <li><strong>Órbitas planetarias</strong> a muy largo plazo (incluida la del sistema solar).</li>
+      <li><strong>Turbulencia</strong> en fluidos: el problema abierto más famoso de la física.</li>
+    </ul>
+    <p>Prueba: pon ρ por debajo de ~24 y verás que el caos desaparece. Hay un umbral.</p>
+  </div>
+</section>
+
+<script src="lorenz.js"></script>
+</body>
+</html>

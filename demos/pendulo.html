@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Péndulo doble — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>🌀 Péndulo doble (caos determinista)</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="700" height="560"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Qué está pasando?</h3>
+      <p class="description">
+        Un péndulo doble es uno de los sistemas físicos más simples que exhiben caos:
+        pequeñísimas diferencias en las condiciones iniciales producen trayectorias
+        completamente distintas. Lanza dos péndulos casi idénticos y mira cómo divergen.
+      </p>
+    </div>
+
+    <div class="control-group">
+      <label>Longitud 1 <span id="l1-val">150</span></label>
+      <input type="range" id="l1" min="60" max="200" step="1" value="150">
+    </div>
+    <div class="control-group">
+      <label>Longitud 2 <span id="l2-val">150</span></label>
+      <input type="range" id="l2" min="60" max="200" step="1" value="150">
+    </div>
+    <div class="control-group">
+      <label>Masa 1 <span id="m1-val">15</span></label>
+      <input type="range" id="m1" min="5" max="40" step="1" value="15">
+    </div>
+    <div class="control-group">
+      <label>Masa 2 <span id="m2-val">15</span></label>
+      <input type="range" id="m2" min="5" max="40" step="1" value="15">
+    </div>
+    <div class="control-group">
+      <label>Fricción <span id="fr-val">0.000</span></label>
+      <input type="range" id="fr" min="0" max="0.01" step="0.0005" value="0">
+    </div>
+
+    <label style="display:flex;align-items:center;gap:0.5rem;color:var(--text-dim);font-size:0.9rem">
+      <input type="checkbox" id="show-twin" checked>
+      Mostrar segundo péndulo (gemelo casi idéntico)
+    </label>
+
+    <button id="reset">Reiniciar</button>
+    <button class="secondary" id="clear-trail">Limpiar estela</button>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📚 Las ecuaciones del péndulo doble</h3>
+    <p>A diferencia del péndulo simple, el doble no tiene solución analítica. Hay que resolver numéricamente este sistema de ecuaciones acopladas (obtenidas con la mecánica de Lagrange):</p>
+    <div class="formula">θ̈<sub>1</sub> <span class="op">= f(</span>θ<sub>1</sub>, θ<sub>2</sub>, θ̇<sub>1</sub>, θ̇<sub>2</sub><span class="op">)</span></div>
+    <div class="formula">θ̈<sub>2</sub> <span class="op">= g(</span>θ<sub>1</sub>, θ<sub>2</sub>, θ̇<sub>1</sub>, θ̇<sub>2</sub><span class="op">)</span></div>
+    <p>Donde θ son los ángulos, θ̇ las velocidades angulares y θ̈ las aceleraciones. Los términos cruzados (sen(θ₁−θ₂)) son los responsables del acoplamiento.</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>🦋 Caos determinista</h3>
+    <p>El sistema es <strong>determinista</strong>: dadas las condiciones iniciales, el futuro está totalmente determinado. Pero también es <strong>caótico</strong>: cualquier diferencia diminuta en las condiciones iniciales se amplifica exponencialmente.</p>
+    <p>En esta demo, los dos péndulos parten con una diferencia angular de solo <strong>0.005 rad</strong> (≈ 0.3°). Al principio se mueven juntos, pero a los pocos segundos sus trayectorias divergen completamente.</p>
+    <p>Esto se conoce como <em>sensibilidad a las condiciones iniciales</em> o <em>"efecto mariposa"</em>, y es una de las razones por las que el clima a largo plazo es impredecible.</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>⚡ Conservación de energía</h3>
+    <p>Sin fricción, la energía total (cinética + potencial) se conserva:</p>
+    <div class="formula"><span class="var">E</span> <span class="op">=</span> ½·<span class="var">m</span>·<span class="var">v</span><sup>2</sup> <span class="op">+</span> <span class="var">m</span>·<span class="var">g</span>·<span class="var">h</span></div>
+    <p>Por eso el péndulo nunca sube más alto de donde empezó. Si activas la <strong>fricción</strong>, la energía se disipa lentamente y el sistema termina en reposo.</p>
+    <p>Prueba: pon fricción 0 y deja correr varios minutos — el caos persiste indefinidamente.</p>
+  </div>
+</section>
+
+<script src="pendulo.js"></script>
+</body>
+</html>

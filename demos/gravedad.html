@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravedad — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>🌍 Gravedad y caída libre</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="700" height="560"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Cómo funciona?</h3>
+      <p class="description">
+        Los objetos caen con aceleración g (9.81 m/s² en la Tierra). La resistencia del aire
+        frena la caída en función de la velocidad. Haz clic en el lienzo para soltar una pelota.
+      </p>
+    </div>
+
+    <div class="control-group">
+      <label>Gravedad <span id="g-val">9.81 m/s²</span></label>
+      <input type="range" id="g" min="0" max="25" step="0.1" value="9.81">
+    </div>
+    <div class="control-group">
+      <label>Resistencia del aire <span id="d-val">0.00</span></label>
+      <input type="range" id="drag" min="0" max="0.05" step="0.001" value="0">
+    </div>
+    <div class="control-group">
+      <label>Rebote <span id="b-val">0.65</span></label>
+      <input type="range" id="bounce" min="0" max="0.95" step="0.05" value="0.65">
+    </div>
+
+    <div class="stats">
+      <span class="label">Pelotas:</span><span class="value" id="count">0</span>
+      <span class="label">v máx:</span><span class="value" id="vmax">0 m/s</span>
+    </div>
+
+    <button id="add">Soltar pelota</button>
+    <button class="secondary" id="clear">Limpiar</button>
+
+    <div>
+      <p class="description" style="margin-top:0.5rem">
+        Presets:
+      </p>
+      <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.4rem">
+        <button class="secondary" data-g="9.81">Tierra</button>
+        <button class="secondary" data-g="1.62">Luna</button>
+        <button class="secondary" data-g="3.71">Marte</button>
+        <button class="secondary" data-g="24.79">Júpiter</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📚 Las ecuaciones del movimiento</h3>
+    <p>La segunda ley de Newton dice que <strong>F = m·a</strong>. Si la única fuerza es el peso (F = m·g), la aceleración no depende de la masa: todo cae igual.</p>
+    <div class="formula"><span class="var">a</span> <span class="op">=</span> <span class="var">g</span></div>
+    <p>Integrando la aceleración obtenemos velocidad y posición a lo largo del tiempo:</p>
+    <div class="formula"><span class="var">v</span>(<span class="var">t</span>) <span class="op">=</span> <span class="var">v</span><sub>0</sub> <span class="op">+</span> <span class="var">g</span>·<span class="var">t</span></div>
+    <div class="formula"><span class="var">y</span>(<span class="var">t</span>) <span class="op">=</span> <span class="var">y</span><sub>0</sub> <span class="op">+</span> <span class="var">v</span><sub>0</sub>·<span class="var">t</span> <span class="op">+</span> ½·<span class="var">g</span>·<span class="var">t</span><sup>2</sup></div>
+  </div>
+
+  <div class="theory-card">
+    <h3>🌬️ Resistencia del aire</h3>
+    <p>Cuando hay aire, aparece una fuerza de arrastre que se opone al movimiento. Para velocidades moderadas se modela proporcional a la velocidad:</p>
+    <div class="formula"><span class="var">F</span><sub>aire</sub> <span class="op">= −</span><span class="var">k</span>·<span class="var">v</span></div>
+    <p>Esto hace que cada objeto alcance una <strong>velocidad terminal</strong>: el punto donde el peso se iguala a la fricción y deja de acelerar. Sin aire, una pluma y una bala caen igual; con aire, no.</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>🪐 Gravedad en otros mundos</h3>
+    <p>El valor de <em>g</em> depende del cuerpo celeste. Por eso un astronauta puede saltar mucho más alto en la Luna:</p>
+    <div class="formula"><span class="var">g</span><sub>Tierra</sub> <span class="op">=</span> <span class="num">9.81</span> m/s<sup>2</sup></div>
+    <div class="formula"><span class="var">g</span><sub>Luna</sub> <span class="op">=</span> <span class="num">1.62</span> m/s<sup>2</sup></div>
+    <div class="formula"><span class="var">g</span><sub>Marte</sub> <span class="op">=</span> <span class="num">3.71</span> m/s<sup>2</sup></div>
+    <div class="formula"><span class="var">g</span><sub>Júpiter</sub> <span class="op">=</span> <span class="num">24.79</span> m/s<sup>2</sup></div>
+    <p>Usa los presets del panel para experimentarlo.</p>
+  </div>
+</section>
+
+<script src="gravedad.js"></script>
+</body>
+</html>

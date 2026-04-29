@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doble rendija — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>🔬 Experimento de la doble rendija</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="800" height="520"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Qué está pasando?</h3>
+      <p class="description">
+        Una onda plana llega por la izquierda y choca con una pared que tiene dos rendijas.
+        Cada rendija se convierte en una nueva fuente de ondas (principio de Huygens). Detrás
+        de la pared, esas dos ondas se suman y producen un patrón de franjas claras y oscuras
+        en la pantalla de la derecha.
+      </p>
+    </div>
+
+    <div class="control-group">
+      <label>Longitud de onda λ <span id="wl-val">28</span></label>
+      <input type="range" id="wl" min="12" max="60" step="1" value="28">
+    </div>
+    <div class="control-group">
+      <label>Separación entre rendijas d <span id="sep-val">120</span></label>
+      <input type="range" id="sep" min="40" max="240" step="2" value="120">
+    </div>
+    <div class="control-group">
+      <label>Ancho de cada rendija <span id="sw-val">14</span></label>
+      <input type="range" id="sw" min="4" max="40" step="1" value="14">
+    </div>
+    <div class="control-group">
+      <label>Velocidad <span id="sp-val">1.0</span></label>
+      <input type="range" id="sp" min="0" max="3" step="0.1" value="1">
+    </div>
+
+    <label style="display:flex;align-items:center;gap:0.5rem;color:var(--text-dim);font-size:0.9rem">
+      <input type="checkbox" id="oneSlit">
+      Cerrar una rendija
+    </label>
+    <label style="display:flex;align-items:center;gap:0.5rem;color:var(--text-dim);font-size:0.9rem">
+      <input type="checkbox" id="particles">
+      Modo partículas (cuántico)
+    </label>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📜 Historia: Young, 1801</h3>
+    <p>
+      Thomas Young hizo pasar luz por dos rendijas estrechas y vio aparecer en la pantalla
+      bandas alternadas claras y oscuras. Si la luz fuese sólo partículas, deberíamos ver
+      dos franjas iluminadas (una detrás de cada rendija). El patrón de franjas demostró
+      que la luz se comporta como una <strong>onda</strong>.
+    </p>
+  </div>
+
+  <div class="theory-card">
+    <h3>📐 La fórmula clave</h3>
+    <p>La diferencia de camino desde las dos rendijas a un punto de la pantalla es:</p>
+    <div class="formula">Δr <span class="op">=</span> <span class="var">d</span>·sin(<span class="var">θ</span>)</div>
+    <p>Hay una franja <strong>brillante</strong> cuando esa diferencia es múltiplo entero de λ:</p>
+    <div class="formula"><span class="var">d</span>·sin(<span class="var">θ</span>) <span class="op">=</span> <span class="var">n</span>·<span class="var">λ</span></div>
+    <p>Y una franja <strong>oscura</strong> cuando es un múltiplo impar de media λ:</p>
+    <div class="formula"><span class="var">d</span>·sin(<span class="var">θ</span>) <span class="op">=</span> (<span class="var">n</span> + ½)·<span class="var">λ</span></div>
+    <p>Consecuencia: si aumentas <strong>d</strong>, las franjas se acercan. Si aumentas <strong>λ</strong>, se separan.</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>⚛️ El giro cuántico</h3>
+    <p>
+      A principios del siglo XX se repitió el experimento disparando <strong>electrones uno a uno</strong>.
+      Cada electrón llega como un punto (partícula), pero al acumular miles de impactos
+      ¡aparece el mismo patrón de franjas! Cada partícula interfiere consigo misma.
+    </p>
+    <p>
+      Aún más raro: si pones un detector que <em>mire</em> por qué rendija pasó cada
+      electrón, el patrón de franjas desaparece y ves sólo dos manchas. Observar cambia
+      el resultado. Activa "Modo partículas" para verlo.
+    </p>
+  </div>
+
+  <div class="theory-card">
+    <h3>💡 Por qué importa</h3>
+    <ul style="color:var(--text-dim); font-size:0.9rem; margin-left:1.2rem; line-height:1.7;">
+      <li>Es la prueba más limpia de la <strong>dualidad onda-partícula</strong>.</li>
+      <li>Richard Feynman dijo que contiene "el único misterio" de la mecánica cuántica.</li>
+      <li>Se ha hecho con fotones, electrones, neutrones, átomos e incluso moléculas grandes.</li>
+      <li>Es la base de técnicas como la difracción de rayos X (estructura del ADN, cristales).</li>
+    </ul>
+  </div>
+</section>
+
+<script src="rendija.js"></script>
+</body>
+</html>

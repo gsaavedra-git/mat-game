@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiro parabólico — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>🎯 Tiro parabólico</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="700" height="560"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Cómo funciona?</h3>
+      <p class="description">
+        Un proyectil lanzado con cierta velocidad y ángulo describe una parábola por efecto de
+        la gravedad. El alcance máximo se da con un ángulo de 45° (sin resistencia del aire).
+      </p>
+    </div>
+
+    <div class="control-group">
+      <label>Ángulo <span id="ang-val">45°</span></label>
+      <input type="range" id="ang" min="0" max="90" step="1" value="45">
+    </div>
+    <div class="control-group">
+      <label>Velocidad inicial <span id="vel-val">60 m/s</span></label>
+      <input type="range" id="vel" min="10" max="120" step="1" value="60">
+    </div>
+    <div class="control-group">
+      <label>Gravedad <span id="g-val">9.81 m/s²</span></label>
+      <input type="range" id="g" min="1" max="25" step="0.1" value="9.81">
+    </div>
+
+    <div class="stats">
+      <span class="label">Alcance:</span><span class="value" id="range-val">0 m</span>
+      <span class="label">Altura máx:</span><span class="value" id="hmax">0 m</span>
+      <span class="label">Tiempo vuelo:</span><span class="value" id="tflight">0 s</span>
+      <span class="label">vₓ:</span><span class="value" id="vx">0 m/s</span>
+      <span class="label">vᵧ:</span><span class="value" id="vy">0 m/s</span>
+    </div>
+
+    <button id="launch">Lanzar</button>
+    <button class="secondary" id="clear">Limpiar trayectorias</button>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📚 Descomposición del movimiento</h3>
+    <p>El tiro parabólico se separa en dos movimientos independientes:</p>
+    <div class="formula"><span class="var">v</span><sub>x</sub> <span class="op">=</span> <span class="var">v</span><sub>0</sub>·cos(<span class="var">θ</span>)</div>
+    <div class="formula"><span class="var">v</span><sub>y</sub> <span class="op">=</span> <span class="var">v</span><sub>0</sub>·sen(<span class="var">θ</span>)</div>
+    <p>El eje X tiene velocidad constante (no hay fuerza horizontal). El eje Y tiene aceleración −<em>g</em> (caída libre).</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>🧮 Cálculo en vivo</h3>
+    <p>Con los valores actuales:</p>
+    <div class="step">Componentes de velocidad:</div>
+    <div class="formula"><span class="var">v</span><sub>x</sub> <span class="op">=</span> <span class="num" id="liv-v0">0</span>·cos(<span class="num" id="liv-ang">0</span>°) <span class="op">=</span> <span class="res" id="liv-vx">0</span></div>
+    <div class="formula"><span class="var">v</span><sub>y</sub> <span class="op">=</span> <span class="num" id="liv-v0b">0</span>·sen(<span class="num" id="liv-angb">0</span>°) <span class="op">=</span> <span class="res" id="liv-vy">0</span></div>
+    <div class="step">Tiempo de vuelo (cuando vuelve al suelo):</div>
+    <div class="formula"><span class="var">t</span> <span class="op">=</span> 2·<span class="var">v</span><sub>y</sub>/<span class="var">g</span> <span class="op">=</span> <span class="res" id="liv-t">0</span> s</div>
+    <div class="step">Alcance horizontal:</div>
+    <div class="formula"><span class="var">R</span> <span class="op">=</span> <span class="var">v</span><sub>x</sub>·<span class="var">t</span> <span class="op">=</span> <span class="res" id="liv-r">0</span> m</div>
+    <div class="step">Altura máxima:</div>
+    <div class="formula"><span class="var">h</span> <span class="op">=</span> <span class="var">v</span><sub>y</sub><sup>2</sup>/(2<span class="var">g</span>) <span class="op">=</span> <span class="res" id="liv-h">0</span> m</div>
+  </div>
+
+  <div class="theory-card">
+    <h3>💡 El ángulo óptimo</h3>
+    <p>Para una velocidad inicial fija, ¿qué ángulo da el mayor alcance? Sustituyendo en la fórmula del alcance:</p>
+    <div class="formula"><span class="var">R</span> <span class="op">=</span> <span class="var">v</span><sub>0</sub><sup>2</sup>·sen(2<span class="var">θ</span>)/<span class="var">g</span></div>
+    <p>El máximo de sen(2θ) ocurre cuando 2θ = 90°, es decir, <strong>θ = 45°</strong>. Otra propiedad interesante: ángulos complementarios (como 30° y 60°) producen exactamente el mismo alcance, aunque trayectorias distintas.</p>
+  </div>
+</section>
+
+<script src="parabolico.js"></script>
+</body>
+</html>

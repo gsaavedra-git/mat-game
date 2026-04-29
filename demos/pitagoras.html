@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teorema de Pitágoras — MatGame</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="demo-header">
+  <a href="../index.html" class="back-link">← Volver</a>
+  <h1>📐 Teorema de Pitágoras</h1>
+</header>
+
+<main class="demo-layout">
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="700" height="560"></canvas>
+  </div>
+
+  <aside class="controls">
+    <div>
+      <h3>¿Cómo funciona?</h3>
+      <p class="description">
+        En un triángulo rectángulo, el cuadrado de la hipotenusa (c) es igual a la suma
+        de los cuadrados de los catetos (a y b). Arrastra los puntos azules para cambiar
+        los lados y observa cómo se cumple la igualdad.
+      </p>
+    </div>
+
+    <div class="stats">
+      <span class="label">Cateto a:</span><span class="value" id="stat-a">0</span>
+      <span class="label">Cateto b:</span><span class="value" id="stat-b">0</span>
+      <span class="label">Hipotenusa c:</span><span class="value" id="stat-c">0</span>
+      <span class="label">a²:</span><span class="value" id="stat-a2">0</span>
+      <span class="label">b²:</span><span class="value" id="stat-b2">0</span>
+      <span class="label">a² + b²:</span><span class="value" id="stat-sum">0</span>
+      <span class="label">c²:</span><span class="value" id="stat-c2">0</span>
+    </div>
+
+    <div class="control-group">
+      <label>Mostrar cuadrados <input type="checkbox" id="show-squares" checked></label>
+      <label>Mostrar valores en lados <input type="checkbox" id="show-labels" checked></label>
+    </div>
+
+    <button class="secondary" id="reset">Reiniciar</button>
+  </aside>
+</main>
+
+<section class="theory">
+  <div class="theory-card">
+    <h3>📚 Enunciado</h3>
+    <p>En todo triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.</p>
+    <div class="formula"><span class="var">a</span><sup>2</sup> <span class="op">+</span> <span class="var">b</span><sup>2</sup> <span class="op">=</span> <span class="var">c</span><sup>2</sup></div>
+    <p>Donde <strong>a</strong> y <strong>b</strong> son los catetos (lados que forman el ángulo recto) y <strong>c</strong> es la hipotenusa (lado opuesto al ángulo recto).</p>
+  </div>
+
+  <div class="theory-card">
+    <h3>🧮 Cálculo en vivo</h3>
+    <p>Con los valores actuales de tu triángulo:</p>
+    <div class="step">1. Elevamos al cuadrado cada cateto:</div>
+    <div class="formula"><span class="var">a</span><sup>2</sup> <span class="op">=</span> <span class="num" id="liv-a">0</span><sup>2</sup> <span class="op">=</span> <span class="res" id="liv-a2">0</span></div>
+    <div class="formula"><span class="var">b</span><sup>2</sup> <span class="op">=</span> <span class="num" id="liv-b">0</span><sup>2</sup> <span class="op">=</span> <span class="res" id="liv-b2">0</span></div>
+    <div class="step">2. Sumamos:</div>
+    <div class="formula"><span class="res" id="liv-a2b">0</span> <span class="op">+</span> <span class="res" id="liv-b2b">0</span> <span class="op">=</span> <span class="res" id="liv-sum">0</span></div>
+    <div class="step">3. La hipotenusa es la raíz cuadrada:</div>
+    <div class="formula"><span class="var">c</span> <span class="op">= √</span><span class="res" id="liv-sum2">0</span> <span class="op">=</span> <span class="res" id="liv-c">0</span></div>
+  </div>
+
+  <div class="theory-card">
+    <h3>💡 ¿Por qué funciona?</h3>
+    <p>La demostración visual más intuitiva es la <em>prueba por áreas</em>: si dibujas un cuadrado sobre cada lado del triángulo, el área del cuadrado verde (sobre la hipotenusa) tiene exactamente la misma superficie que el área azul más el área rosa juntas.</p>
+    <p>Es decir: <strong>área(c²) = área(a²) + área(b²)</strong>. Por eso el teorema relaciona los lados elevados al cuadrado, no los lados directamente.</p>
+    <p>Aplicaciones: calcular distancias, navegación GPS, gráficos por computadora, construcción (escuadra 3-4-5)…</p>
+  </div>
+</section>
+
+<script src="pitagoras.js"></script>
+</body>
+</html>
